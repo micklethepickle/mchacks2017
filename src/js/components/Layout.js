@@ -1,34 +1,26 @@
 import React from "react";
+import Request from "superagent";
 
-import SortingText from "./SortingText";
-import SubmitText from "./SubmitText";
 
 export default class Layout extends React.Component {
 	constructor(){
 		super();
 		this.state = {
-			submitTextValue: "",
-			toSort: [],
-		}
+		};
 	}
 
-	handleTextChange(event){
-		this.setState({submitTextValue: event.target.value});
-	}
-	handleTextSubmit(event){
-		let toSortArray = this.state.submitTextValue.split(',');
-		event.preventDefault()
-		this.setState({ toSort: toSortArray});
+	componentWillMount(){
+		var url = "localhost:3000/api/data";
+		Request.get(url+"data").then((response) => {
+			this.setState({
+				post: response
+			})
+		})
 	}
 
 	render(){
 		return(
-			<div>
-				<SubmitText value={this.state.submitTextValue} 
-							onTextChange={(event) => this.handleTextChange(event)}
-							onTextSubmit={(event) => this.handleTextSubmit(event)}/>
-				<SortingText toSortArray={this.state.toSort}/>
-			</div>
+			<h90>{this.state.post}</h90>
 		);
 	}
 }

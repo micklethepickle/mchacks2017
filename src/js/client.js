@@ -4,6 +4,6 @@ import ReactDOM from "react-dom";
 import Layout from "./components/Layout";
 
 
-const app = document.getElementById('app');
+const posts = document.getElementById('posts');
 
-ReactDOM.render(<Layout/ >, app);
+ReactDOM.render(<Layout/ >, posts);
